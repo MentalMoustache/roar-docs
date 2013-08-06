@@ -69,6 +69,10 @@ Once that is setup, you can begin installing Roar.
 
     **NOTE:** We can probably get away with a lighter package than lib boost-all-dev though.
 
+* Install mailutils (used by `restarter.bash`):
+
+    sudo apt-get install mailutils
+
 * Generate a server **ssh key** with `ssh-keygen`  and add `~/.ssh/id_rsa.pub` to your github user.
 * Clone the **roarengine repository**:
     ~~~
@@ -214,6 +218,8 @@ Once that is setup, you can begin installing Roar.
     ~~~
     ./roarengine config/tests/linux.conf
     ~~~
+
+Note: Refer to the full [documentation on correct startup and shutdown for Roar](https://github.com/roarengine/roar-docs/blob/master/docs/running.md) in **production**.
 
 You now have a functional Roar Engine server. To start doing interesting things with it, you'll need to setup the **configuration XML files** located in `/bin/data`. For information on how to setup these files, refer to the [configuration file docs](https://github.com/roarengine/roar-docs/tree/master/docs/configuration_files).
 

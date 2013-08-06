@@ -7,10 +7,11 @@ Download a Roar license here: **[http://roarengine.com](http://roarengine.com)**
 
 ## Quicklinks
 
-Get started with **Roar documentation available** under `/docs` or at:  
+Get started with **Roar documentation available** under `/docs` or at:
 **[http://github.com/roarengine/roar-docs/](http://github.com/roarengine/roar-docs/)**
 
 - **[Installation](http://github.com/roarengine/roar-docs/blob/master/docs/setup.md) (start here)**
+- [Running the server](http://github.com/roarengine/roar-docs/blob/master/docs/running.md) - start and stop
 - [Configuration files](http://github.com/roarengine/roar-docs/tree/master/docs/configuration_files/)
 - [Scripting](http://github.com/roarengine/roar-docs/blob/master/docs/concepts/scripting.md)
 - [Logging](http://github.com/roarengine/roar-docs/blob/master/docs/concepts/logging.md)
@@ -31,20 +32,20 @@ Your use of Roar Engine is bound by the [License Terms](http://roarengine.com/li
 ## Application Stack
 The Roar Application Stack comprises the following distinct layers:
 
-- **Web**  
-  _Apache+PHP web layer_  
+- **Web**
+  _Apache+PHP web layer_
   Handles incoming HTTP requests and routes to the App layer.
 
-- **Leaderboard**  
-  _PHP+MySQL leaderboard module_  
+- **Leaderboard**
+  _PHP+MySQL leaderboard module_
   A sub-module dedicated to handling leaderboards.
 
-- **Application**  
-  _C++ Roar socket application_  
+- **Application**
+  _C++ Roar socket application_
   The core game engine (the server itself).
 
-- **DB**  
-  _Postgres app DB layer_  
+- **DB**
+  _Postgres app DB layer_
   Used to persist application data (eg. players, items, etc).
 
 
