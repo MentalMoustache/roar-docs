@@ -104,7 +104,7 @@ Once that is setup, you can begin installing Roar.
     ~~~
     cd ..
     ./build.bash clean
-    mv src/roarengine .
+    mv engine/roarengine .
     ~~~
 
 * Setup **Apache**:
