@@ -71,7 +71,9 @@ Once that is setup, you can begin installing Roar.
 
 * Install mailutils (used by `restarter.bash`):
 
+    ~~~
     sudo apt-get install mailutils
+    ~~~
 
 * Generate a server **ssh key** with `ssh-keygen`  and add `~/.ssh/id_rsa.pub` to your github user.
 * Clone the **roarengine repository**:
@@ -89,7 +91,7 @@ Once that is setup, you can begin installing Roar.
     curl http://www.lua.org/ftp/lua-5.1.tar.gz -o lua-5.1.tar.gz
     tar xzf lua-5.1.tar.gz
     cd lua-5.1
-    patch -p0 < external/lua_patch.patch
+    patch -p0 < ../roarengine/external/lua_patch.patch
     make linux
     sudo make install
     ~~~
@@ -97,12 +99,13 @@ Once that is setup, you can begin installing Roar.
 * Build the **fastjson** module:
 
     ~~~
-    cd external/fastjson ; make ; cd ..
+    cd ../roarengine/external/fastjson 
+    make
+    cd ../..
     ~~~
 
 * **Build Roar**:
     ~~~
-    cd ..
     ./build.bash clean
     mv engine/roarengine .
     ~~~
@@ -111,7 +114,7 @@ Once that is setup, you can begin installing Roar.
     * Install PHP packages
 
         ~~~
-         sudo pear install channel://pear.php.net/XML_Serializer-0.20.2
+        sudo pear install channel://pear.php.net/XML_Serializer-0.20.2
         ~~~
 
     * Install postgres drivers ( the install is supposed to restart apache, but doesn't in all cases, so try an explicit restart )
@@ -124,7 +127,7 @@ Once that is setup, you can begin installing Roar.
     * Disable default site and enable roar site
 
         ~~~
-        sudo cp apache-roar /etc/apache2/sites-available/roar
+        sudo cp config/default/sites-config-roar /etc/apache2/sites-available/roar
         sudo a2dissite default
         sudo a2ensite roar
         sudo service apache2 reload
@@ -155,6 +158,7 @@ Once that is setup, you can begin installing Roar.
         # create database luadb;
         # create user roarlua with password 'awesomesaucier';
         # grant all privileges on database luadb to roarlua;
+        # \q
         ~~~
 
     * Setup leaderboard mysql database
@@ -180,7 +184,7 @@ Once that is setup, you can begin installing Roar.
            > mysql -u root -p Leaderboard < leaderboard_server/leaderboard_schema.sql
            ~~~
 
-        * Add the default leaderboard user info. In config `config/linux.conf` file there is something
+        * Add the default leaderboard user info. In config `default/config/linux.conf` file there is something
 
         ~~~
           "leaderboard": {
@@ -199,7 +203,7 @@ Once that is setup, you can begin installing Roar.
         mysql> INSERT INTO permissions ( user_id, app_id, resource_id, permission ) VALUES ( 777, 0, 0, "SUPER" );
         ~~~
 
-    * If you use any non-standard database names / passwords you will need to change the `linux.conf` and `serverconfig.php` files in the config directory.
+    * If you use any non-standard database names / passwords you will need to change the `config/default/linux.conf` and `config/default/serverconfig.php` files in the config directory.
 
 * Create your **keys.json** file
 
@@ -216,10 +220,10 @@ Once that is setup, you can begin installing Roar.
 * And finally, **start the engine...**
 
     ~~~
-    ./roarengine config/tests/linux.conf
+    ./roarengine config/default/linux.conf
     ~~~
 
 Note: Refer to the full [documentation on correct startup and shutdown for Roar](https://github.com/roarengine/roar-docs/blob/master/docs/running.md) in **production**.
 
-You now have a functional Roar Engine server. To start doing interesting things with it, you'll need to setup the **configuration XML files** located in `/bin/data`. For information on how to setup these files, refer to the [configuration file docs](https://github.com/roarengine/roar-docs/tree/master/docs/configuration_files).
+You now have a functional Roar Engine server. To start doing interesting things with it, you'll need to setup the **configuration XML files** copy thd configuration files from `config/default` to `config/<gamename>/data`, and change the last line of the `install.bash` script to point at the right config directory. For information on how to setup these files, refer to the [configuration file docs](https://github.com/roarengine/roar-docs/tree/master/docs/configuration_files).
 
