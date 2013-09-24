@@ -137,7 +137,7 @@ Once that is setup, you can begin installing Roar.
 
 * Setup **databases**
     * Setup core postgres database and user.
-         The actual usernames, passwords and database names can be changed in the `engine/linux.conf` file.
+         The actual usernames, passwords and database names can be changed in the `config/GAME/linux.conf` file.
          This just uses the default values we use for testing.
 
         ~~~
@@ -150,7 +150,7 @@ Once that is setup, you can begin installing Roar.
         ~~~
 
    * Setup auxiliary lua postgres database and user.
-         The actual usernames, passwords and database names can be changed in the `engine/linux.conf` file.
+         The actual usernames, passwords and database names can be changed in the `config/GAME/linux.conf` file.
          This just uses the default values we use for testing.
 
         ~~~
@@ -184,26 +184,28 @@ Once that is setup, you can begin installing Roar.
            > mysql -u root -p Leaderboard < leaderboard_server/leaderboard_schema.sql
            ~~~
 
-        * Add the default leaderboard user info. In config `default/config/linux.conf` file there is something
+        * Add the default leaderboard user info. In config `default/config/linux.conf` file there is 
 
-        ~~~
+          ~~~
           "leaderboard": {
-           "app_id":"4321",
-           "user_id":"777",
-           "auth_token":"1234",
-        ~~~
+            "app_id":"4321",
+            "user_id":"777",
+            "auth_token":"1234",
+          ~~~
 
-        These values need to be inserted into the Leaderboard database (you can change them if you wish).
+          These values need to be inserted into the Leaderboard database
 
-        ~~~
-        > mysql -u root -p Leaderboard
-        mysql> INSERT INTO apps ( app_id ) VALUES ( 4321 );
-        mysql> INSERT INTO users ( user_id, auth_token ) VALUES ( 777, 1234 );
-        mysql> INSERT INTO permissions ( user_id, app_id, resource_id, permission ) VALUES ( 777, 4321, 0, "ALL" );
-        mysql> INSERT INTO permissions ( user_id, app_id, resource_id, permission ) VALUES ( 777, 0, 0, "SUPER" );
-        ~~~
+          ~~~
+          > mysql -u root -p Leaderboard
+          mysql> INSERT INTO apps ( app_id ) VALUES ( 4321 );
+          mysql> INSERT INTO users ( user_id, auth_token ) VALUES ( 777, 1234 );
+          mysql> INSERT INTO permissions ( user_id, app_id, resource_id, permission ) VALUES ( 777, 4321, 0, "ALL" );
+          mysql> INSERT INTO permissions ( user_id, app_id, resource_id, permission ) VALUES ( 777, 0, 0, "SUPER" );
+          ~~~
+        
+          You can change these values if you wish, if you do you will need to update the `.conf` file and the MySQL database.
 
-    * If you use any non-standard database names / passwords you will need to change the `config/default/linux.conf` and `config/default/serverconfig.php` files in the config directory.
+    * You will need to change the `config/GAME/linux.conf` and `config/GAME/serverconfig.php` files in the config directory to use the correct passwords and usernames.
 
 * Create your **keys.json** file
 
