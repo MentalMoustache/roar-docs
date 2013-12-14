@@ -1,10 +1,23 @@
 # `tasks.xml`
 
-This file controls various things that you can *do* in the game. The XML structure reflects several extensions to the tasks idea that have not yet been implemented.
+This file controls various things that you can *do* in the game. 
+
+Tasks follow the pattern of:
+
+- [**Requirements**](https://github.com/roarengine/roar-docs/blob/master/docs/concepts/requirements.md) : minimum thresholds to meet
+- [**Costs**](https://github.com/roarengine/roar-docs/blob/master/docs/concepts/costs.md) : removed or decremented from the player
+- [**Modifiers**](https://github.com/roarengine/roar-docs/blob/master/docs/concepts/modifiers.md) : given to the player
+
+For a task to "complete", a player MUST: 
+
+1. Meet all the requirements, and;
+2. Be able to pay all the costs.
+
+If these conditions are met, the `<start_costs>` are applied to the player (which can in fact _increase_ certain stats, not just decrease - eg. your `infamy` goes up as a "cost"), and the `<on_complete>` modifiers are applied (and again, these can cause stats to go down or items to be removed, rather than only causing increases and gains).
 
 Here's a typical task, showing many of (but not all) the features of tasks.
 
-~~~xml
+```xml
 <task
   type="instant_complete"
   ikey="grow_your_family"
@@ -16,11 +29,6 @@ Here's a typical task, showing many of (but not all) the features of tasks.
   <tag value="associate" />
   <tag value="random_tag" />
   <tag value="third_tag" />
-  <mastery>
-    <level count="10"/>
-    <level count="20"/>
-    <level count="30"/>
-  </mastery>
 
   <start_costs>
     <stat_cost ikey="energy" value="3"/>
@@ -34,7 +42,7 @@ Here's a typical task, showing many of (but not all) the features of tasks.
     <grant_xp value="3"/>
   </on_complete>
 </task>
-~~~
+```
 
 ## Task types
 
@@ -74,12 +82,14 @@ A [modifier](../concepts/modifiers.md) that happens to the player when they succ
 ## `tag`
 For sorting and filtering tasks on the client.
 
-## `mastery`
-Provides for tiers of "skill" for completing the task multiple times.
-Currently cosmetic only.
 
-* TODO: This could really do with some more fleshing out and examples. Things like how to implement :
-    * Sub-tasks
-    * Chaining
-    * Single completion quests
-    * Daily quests
+### Types and usage
+
+Combining the requirements, costs and modifiers for tasks allows you to increment and decrement attribute flags that can enable various types of tasks, including.
+
+- Sub-tasks
+- Chaining
+- Single completion quests
+- Daily quests
+
+Let your imagination go wild.
