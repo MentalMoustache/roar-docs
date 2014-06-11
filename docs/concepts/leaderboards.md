@@ -65,6 +65,13 @@ The resulting entry would look like this:
 
 **Note:** A stat *does not* need to be tracked as a leaderboard to be returned as a compound field.
 
+Also, update your `/var/www/GAME/leaderboards/config/**leaderboard_extended_config.json**` to include the `ikey` of the custom property you are including:
+
+    {
+      "custom": ["my_custom_property"],
+      "stats": ["gamecoins"]
+    }
+
 #### 2. Custom properties
 You can optionally configure a Custom Property to return as data for a player in **all** leaderboards. This is particularly useful to return client-configurable information such as "Character Name" or "Band Label".
 

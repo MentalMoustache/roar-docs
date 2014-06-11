@@ -25,7 +25,7 @@ function somefun( p, expected_time, actual_time )
     -- We get a nil or 0 on first install as expected_time, and
     -- return the next time it needs to get run.
     if( expected_time==nil or expected_time==0 ) then
-       return dt
+       return actual_time + dt
     end
 
     -- Calculate how many times the regen should have occurred,
